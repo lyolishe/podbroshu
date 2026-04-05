@@ -3,6 +3,9 @@
 # dependencies
 node_modules/
 
+# IDEA
+.idea
+
 # Expo
 .expo/
 dist/

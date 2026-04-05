@@ -4,6 +4,7 @@ import {
   TextInput,
   TextInputChangeEvent,
   View,
+  Text,
 } from "react-native";
 
 type FormFields = "from" | "to" | "date" | "time" | "passengers_n";
@@ -33,12 +34,18 @@ const AddTripModal = () => {
   return (
     <View style={styles.container}>
       {fields.map((fieldId) => (
-        <TextInput
-          id={fieldId}
-          value={state[fieldId]}
-          key={fieldId}
-          onChange={handleFieldChange.bind(null, fieldId)}
-        />
+          <View key={fieldId}>
+            <Text>
+              {fieldId}
+            </Text>
+            <TextInput
+                id={fieldId}
+                value={state[fieldId]}
+                style={styles.input}
+                onChange={handleFieldChange.bind(null, fieldId)}
+            />
+
+          </View>
       ))}
     </View>
   );
@@ -48,7 +55,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
+    gap: 12,
+    alignItems: "center",
   },
+  input: {
+    borderStyle: "solid",
+    borderColor: "blue",
+    borderWidth: 1,
+    maxWidth: 360,
+    borderRadius: 8,
+    paddingInline:4
+  }
 });
 
 export default AddTripModal;
