@@ -11,19 +11,21 @@ export class ApiClient {
         return await fetch(`${this.baseUrl}/rides`).then(this.processResponse).catch(console.error);
     }
 
-    createRide(body: CreateRideDto): Promise<RideDto> {
+    createRide = async (body: CreateRideDto): Promise<RideDto> => {
         return fetch(`${this.baseUrl}/rides`, {
             method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify(body)
         }).then(this.processResponse)
     }
 
     private processResponse(response: Response) {
-        console.log(response);
         if (response.ok && [200, 201, 203, 204, 205].includes(response.status)) {
-            const r = response.json()
-            console.log("Response: ", r)
-            return r
+            return response.json()
         }
+
+        throw new Error(response.statusText);
     }
 }

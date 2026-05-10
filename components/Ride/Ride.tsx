@@ -18,7 +18,11 @@ const styles = StyleSheet.create({
         gap: 8,
         alignItems:"flex-start",
         justifyContent: "space-around",
-        height: 100
+        height: 100,
+        padding: 14,
+        borderWidth: 1,
+        borderColor: "gray",
+        borderRadius: 16
     },
     directions: {
         fontSize:24,
